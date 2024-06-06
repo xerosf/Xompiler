@@ -6,7 +6,6 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-    int pos = 0;
     string fileName;
     string line;
 
@@ -15,10 +14,10 @@ int main(int argc, char* argv[])
 
         if (argument.find(".xro")) {
             int pos = argument.find(".xro");
-            string fileName = argument.substr(0, pos);
+            fileName = argument.substr(0, pos);
         }
         else if (argument.find(".xro") == string::npos) {
-            string fileName = argument;
+            fileName = argument;
         }
         else
             throw(argument);
@@ -27,15 +26,10 @@ int main(int argc, char* argv[])
         cout << "Given argument: '" << argument << ".xro' was not found in directory!";
     }
 
-    ifstream file(fileName + ".xro");
-
-    cout << "Opened" << endl;
+    ifstream file((fileName + ".xro"));
 
     while (getline(file, line)) {
-        if (!file.is_open()) {
-            cerr << "Error opening file." << endl;
-            return 1;
-        }
+        cout << line << endl;
     }
 
     file.close();
